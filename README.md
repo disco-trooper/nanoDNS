@@ -122,7 +122,9 @@ to `lo0` while the payload runs, so the console's DNS setting can point at it.
 Without it only `127.0.0.1` exists on `lo0`: `bind=127.0.0.2` fails with
 `EADDRNOTAVAIL`, and queries the console sends to `127.0.0.2` never reach a
 `bind=0.0.0.0` listener. The address is removed again on a clean exit, and an
-address that was already present is left alone. The default is `off`.
+address that was already present is left alone. When an instance is killed
+instead, including when a new instance replaces it, the address stays on `lo0`
+until the console restarts. The default is `off`.
 
 Entries in `[upstream]` are attempted in order. `timeout_ms` is the total time budget
 for trying the configured upstream servers for a single query.
